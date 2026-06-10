@@ -39,8 +39,115 @@ document.querySelectorAll('nav a').forEach(anchor => {
 
 // Preloader Animation (Portal)
 const portalRing = document.getElementById('portal-ring');
-const skyBg = document.getElementById('sky-bg');
+const skyBg = document.getElementById('sky-bg'); // Might be null now, that's fine
 const preloader = document.getElementById('portal-preloader');
+const shaderContainer = document.getElementById('shader-container');
+
+// --- Three.js GLSL Shader Logic (Radial Warp) ---
+let shaderApp = null;
+if (shaderContainer && window.THREE) {
+    const textureLoader = new THREE.TextureLoader();
+    textureLoader.crossOrigin = "Anonymous";
+    
+    shaderApp = {
+        scene: new THREE.Scene(),
+        camera: new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1),
+        renderer: new THREE.WebGLRenderer({ alpha: true, antialias: true }),
+        uniforms: {
+            u_time: { value: 0.0 },
+            u_resolution: { value: new THREE.Vector2() },
+            u_tex: { value: null },
+            u_warpAmount: { value: 1.0 } // 1.0 means active warp, animated up on click
+        },
+        init: function() {
+            this.renderer.setPixelRatio(window.devicePixelRatio);
+            this.renderer.setSize(shaderContainer.clientWidth, shaderContainer.clientHeight);
+            shaderContainer.appendChild(this.renderer.domElement);
+
+            this.uniforms.u_resolution.value.set(shaderContainer.clientWidth, shaderContainer.clientHeight);
+
+            // Load the sky background texture
+            textureLoader.load("https://images.unsplash.com/photo-1495616811223-4d98c6e9c869?q=80&w=2000&auto=format&fit=crop", (tex) => {
+                this.uniforms.u_tex.value = tex;
+            });
+
+            const geometry = new THREE.PlaneGeometry(2, 2);
+            const material = new THREE.ShaderMaterial({
+                uniforms: this.uniforms,
+                transparent: true,
+                vertexShader: `
+                    void main() {
+                        gl_Position = vec4(position, 1.0);
+                    }
+                `,
+                fragmentShader: `
+                    uniform float u_time;
+                    uniform vec2 u_resolution;
+                    uniform sampler2D u_tex;
+                    uniform float u_warpAmount;
+
+                    void main() {
+                        // Normalize coordinates and fix aspect ratio
+                        vec2 uv = gl_FragCoord.xy / u_resolution.xy;
+                        vec2 center = vec2(0.5, 0.5);
+                        vec2 p = uv - center;
+                        p.x *= u_resolution.x / u_resolution.y;
+                        
+                        float dist = length(p);
+                        
+                        // 1. THE RADIAL STREAK (No swirl)
+                        // Pulls the image aggressively toward the center to create the warped sky
+                        float lensPull = 0.15 * u_warpAmount / (dist + 0.1); 
+                        vec2 dir = normalize(p);
+                        vec2 warpedUV = center + dir * (dist - lensPull) * (u_resolution.y / u_resolution.x);
+                        // Quick fallback for Y axis aspect ratio normalization on warped UV
+                        warpedUV.y = center.y + dir.y * (dist - lensPull);
+                        warpedUV.x = center.x + dir.x * (dist - lensPull) * (u_resolution.y / u_resolution.x);
+
+                        vec4 texColor = texture2D(u_tex, warpedUV);
+                        
+                        // 2. THE BLACK HOLE
+                        // Increase this radius (0.22) if the hole is too small for your text
+                        float holeRadius = 0.22; 
+                        
+                        // 3. THE "PLASTIC" GLASSY RIM
+                        // Creates the thick, bright refracted edge around the black hole
+                        float rimEdge = smoothstep(holeRadius, holeRadius + 0.08, dist);
+                        float rimGlow = (1.0 - rimEdge) * 1.5; 
+                        vec4 rimColor = vec4(0.8, 0.9, 1.0, 1.0) * rimGlow; 
+                        
+                        // Sharp cutoff for the void
+                        float eventHorizon = smoothstep(holeRadius - 0.005, holeRadius + 0.005, dist);
+                        
+                        // Mix the void, the rim, and the warped sky
+                        vec4 finalColor = mix(vec4(0.0, 0.0, 0.0, 1.0), texColor + rimColor, eventHorizon);
+                        
+                        gl_FragColor = vec4(finalColor.rgb, 1.0);
+                    }
+                `
+            });
+
+            this.mesh = new THREE.Mesh(geometry, material);
+            this.scene.add(this.mesh);
+
+            window.addEventListener('resize', this.onResize.bind(this));
+            this.animate();
+        },
+        onResize: function() {
+            if (!shaderContainer) return;
+            this.renderer.setSize(shaderContainer.clientWidth, shaderContainer.clientHeight);
+            this.uniforms.u_resolution.value.set(shaderContainer.clientWidth, shaderContainer.clientHeight);
+        },
+        animate: function() {
+            requestAnimationFrame(this.animate.bind(this));
+            this.uniforms.u_time.value += 0.02;
+            this.renderer.render(this.scene, this.camera);
+        }
+    };
+    
+    // Slight delay to ensure layout is ready
+    setTimeout(() => shaderApp.init(), 100);
+}
 
 window.addEventListener("load", () => {
     // Disable scrolling during preloader
@@ -48,14 +155,26 @@ window.addEventListener("load", () => {
 
     if(portalRing) {
         portalRing.addEventListener('click', () => {
-            // Warp the sky
-            skyBg.classList.add('warp');
+            // Intensify the radial warp effect on click
+            if(shaderApp && shaderApp.uniforms) {
+                gsap.to(shaderApp.uniforms.u_warpAmount, {
+                    value: 4.0, // Aggressive pull
+                    duration: 1.5,
+                    ease: "power2.in"
+                });
+            }
             
+            // Fade out the surrounding text and shader canvas
+            gsap.to('.portal-text, #shader-container', {
+                opacity: 0,
+                duration: 1.5,
+                ease: "power2.inOut"
+            });
+
             // Scale up the portal massively
             gsap.to(portalRing, {
                 scale: 50,
                 opacity: 0,
-                filter: 'blur(10px)',
                 duration: 1.5,
                 ease: "power2.inOut",
                 onComplete: () => {

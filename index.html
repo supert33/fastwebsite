@@ -11,6 +11,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Three.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script>
         tailwind.config = {
             theme: {
@@ -33,10 +35,20 @@
 </head>
 <body class="bg-dark text-light antialiased overflow-x-hidden selection:bg-light selection:text-dark">
     <!-- Preloader -->
-    <div id="portal-preloader" class="fixed inset-0 z-[100] bg-dark flex items-center justify-center overflow-hidden">
-        <img src="https://images.unsplash.com/photo-1495616811223-4d98c6e9c869?q=80&w=2000&auto=format&fit=crop" id="sky-bg" class="absolute inset-0 w-full h-full object-cover opacity-60 mix-blend-screen pointer-events-none" alt="Sky">
-        <div class="absolute inset-0 bg-dark/80 backdrop-blur-md pointer-events-none z-0"></div>
-        <div id="portal-ring" class="w-48 h-48 md:w-64 md:h-64 rounded-full relative cursor-pointer flex items-center justify-center z-10 portal-hole">
+    <div id="portal-preloader" class="fixed inset-0 z-[100] bg-dark overflow-hidden">
+        <!-- The background canvas for Three.js -->
+        <div id="shader-container" class="absolute inset-0 w-full h-full z-0 pointer-events-none"></div>
+        
+        <!-- The Perfectly Centered Text -->
+        <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10 flex items-center justify-center gap-4 md:gap-8 text-light font-display font-bold text-[18vw] md:text-[14vw] leading-none tracking-tighter" id="who-am-i-text">
+            <span class="portal-text transition-transform duration-700 hover:scale-110">WH</span>
+            
+            <div class="relative flex items-center justify-center">
+                <!-- The invisible trigger ring that perfectly overlaps the black hole -->
+                <div id="portal-ring" class="w-[18vw] h-[18vw] md:w-[14vw] md:h-[14vw] rounded-full cursor-pointer z-20"></div>
+            </div>
+            
+            <span class="portal-text transition-transform duration-700 hover:scale-110">AM I</span>
         </div>
     </div>
 
@@ -51,7 +63,6 @@
             <a href="#reflection1" class="hover-text">The Mastermind</a>
             <a href="#reflection2" class="hover-text">Feeling for Others</a>
             <a href="#contact" class="hover-text">Works Cited</a>
-            <a href="#contact" class="hover-text">Contact</a>
         </div>
     </nav>
 
