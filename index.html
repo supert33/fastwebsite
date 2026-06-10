@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio & Reflections</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Space Grotesk', 'sans-serif'],
+                    },
+                    colors: {
+                        dark: '#050505',
+                        light: '#f5f5f5',
+                        accent: '#111111'
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="index.css">
+</head>
+<body class="bg-dark text-light antialiased overflow-x-hidden selection:bg-light selection:text-dark">
+    <!-- Preloader -->
+    <div class="preloader fixed inset-0 z-[100] bg-dark flex items-center justify-center flex-col pointer-events-none">
+        <div class="overflow-hidden">
+            <h1 class="preloader-text font-display text-4xl md:text-6xl uppercase tracking-tighter translate-y-full">Entering</h1>
+        </div>
+        <div class="overflow-hidden mt-2">
+            <h1 class="preloader-text font-display text-4xl md:text-6xl uppercase tracking-tighter text-gray-500 translate-y-full">The Mind</h1>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 w-full p-6 z-50 mix-blend-difference flex justify-between items-center text-sm uppercase tracking-widest font-medium">
+        <div class="logo font-display font-bold text-xl cursor-pointer">S.N.T</div>
+        <div class="hidden md:flex gap-8 nav-links">
+            <a href="#about" class="hover-text">About Me</a>
+            <a href="#reflection1" class="hover-text">The Mastermind</a>
+            <a href="#reflection2" class="hover-text">Cognitive Empathy</a>
+            <a href="#contact" class="hover-text">Works Cited</a>
+            <a href="#contact" class="hover-text">Contact</a>
+        </div>
+    </nav>
+
+    <main class="w-full">
+        <!-- Section 1: About Me -->
+        <section id="about" class="panel min-h-screen w-full flex items-center pt-20 pb-10 px-6 md:px-12 lg:px-24 relative">
+            <div class="w-full max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-12 items-center">
+                <!-- Image Holder -->
+                <div class="md:col-span-4 image-reveal opacity-0 scale-95">
+                    <div class="w-full aspect-[4/5] rounded-[2rem] bg-accent overflow-hidden relative group border border-gray-800">
+                        <div class="absolute inset-0 flex flex-col items-center justify-center text-gray-600 font-display tracking-widest uppercase text-sm">
+                            <svg class="w-8 h-8 mb-4 opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path></svg>
+                            Profile Photo
+                        </div>
+                        <div class="absolute inset-0 bg-white/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                    </div>
+                </div>
+                <!-- Content -->
+                <div class="md:col-span-8 flex flex-col justify-center pl-0 md:pl-8">
+                    <div class="overflow-hidden mb-8">
+                        <h1 class="text-reveal font-display text-5xl md:text-[5.5rem] font-bold leading-[0.9] uppercase tracking-tighter interactive-heading">
+                            The Analytical Architect <br> <span class="text-gray-500">& Meticulous Creator</span>
+                        </h1>
+                    </div>
+                    
+                    <blockquote class="mb-10 border-l-2 border-gray-600 pl-6 py-2 group cursor-pointer quote-reveal opacity-0">
+                        <p class="font-display text-xl md:text-3xl italic text-gray-400 group-hover:text-light transition-colors duration-500 transform group-hover:translate-x-3 ease-out quote-text">
+                            "Language is the art of thinking, and reading gives one the ability to understand that art."
+                        </p>
+                    </blockquote>
+                    
+                    <div class="text-gray-400 text-lg leading-relaxed space-y-5 font-light body-reveal opacity-0 max-w-2xl">
+                        <p>I strike a rare balance between intense analytical rigor and highly disciplined creativity. I'm a Grade 11 student at Earl Haig Secondary School here in Toronto. I moved to Canada in May 2025, which has been a pretty massive shift.</p>
+                        <p>When I'm not doing coursework for NBE3U1, I spend a lot of my time writing C++ and Python for competitive programming or building custom AI workflows. I also lift at the gym and get way too into the science of cooking, specifically pastry chemistry and molecular gastronomy.</p>
+                        <p>I built this site to host my English summative while testing out some 3D web design ideas.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2: Reflection 1 -->
+        <section id="reflection1" class="panel min-h-screen w-full flex items-center py-20 px-6 md:px-12 lg:px-24 bg-[#0a0a0a]">
+            <div class="w-full max-w-7xl mx-auto flex flex-col h-full justify-center">
+                <div class="overflow-hidden mb-16 border-b border-gray-800 pb-8">
+                    <p class="font-display text-gray-500 uppercase tracking-widest mb-4 body-reveal opacity-0">Reflection 1</p>
+                    <h2 class="text-reveal font-display text-5xl md:text-7xl font-bold uppercase tracking-tighter interactive-heading">The Mastermind <span class="text-gray-600">(Holism)</span></h2>
+                </div>
+                
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-16">
+                    <div class="lg:col-span-4 flex flex-col gap-10">
+                        <!-- Book Image -->
+                        <div class="w-full max-w-[300px] aspect-[3/4] rounded-xl bg-accent flex flex-col items-center justify-center text-center p-6 border border-gray-800 image-reveal opacity-0 relative overflow-hidden group hover-float mx-auto lg:mx-0">
+                            <svg class="w-10 h-10 mb-4 opacity-30 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
+                            <span class="font-display text-gray-400 uppercase tracking-widest z-10 text-sm">Five Little Indians<br><span class="text-[10px] text-gray-600 mt-2 block">Image Placeholder</span></span>
+                            <div class="absolute inset-0 bg-gradient-to-tr from-transparent to-white/5 opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+                        </div>
+                        
+                        <!-- Media Connection -->
+                        <div class="media-card bg-dark border border-gray-800 p-8 rounded-xl hover-float opacity-0">
+                            <div class="w-full h-32 bg-accent rounded-lg mb-6 flex items-center justify-center border border-gray-800/50 relative overflow-hidden group">
+                                <span class="text-xs text-gray-500 font-display uppercase tracking-wider text-center px-4 relative z-10 transition-colors group-hover:text-light">Media Connection:<br>The REDress Project</span>
+                                <div class="absolute inset-0 bg-red-900/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                            </div>
+                            <p class="text-sm text-gray-400 leading-relaxed font-light">
+                                This reflection connects deeply to the imagery of The REDress Project. Just as the red dresses symbolize the missing and murdered Indigenous women who were failed and exploited by society, Lucy's encounter with Walt the pimp in Vancouver mirrors this exact systemic vulnerability. Lucy narrowly escaped being sold, utilizing her quick thinking to survive a system designed to exploit her.
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="lg:col-span-8">
+                        <div class="h-[650px] overflow-y-auto pr-8 custom-scrollbar text-lg md:text-xl leading-relaxed text-gray-400 font-light space-y-8 body-reveal opacity-0">
+                            <p class="first-letter:text-7xl first-letter:font-display first-letter:font-bold first-letter:mr-3 first-letter:float-left first-letter:text-light first-letter:leading-[0.8]">
+                                95 percent of humans live a happy life. This is false in the same way that society fakes its care for individuals. This is because society only cares about profits and the people who control society by creating laws. Lucy is an example of this fake care, and her story highlights how society stabs you in the back. But Lucy is not an ordinary woman. She is resilient and becomes a strong woman by the end of the story.
+                            </p>
+                            <p>At the start of <em>Five Little Indians</em>, Lucy is gullible, stupid, and exploited. Her first traumatic experience was in the residential school, where she was sexually abused by a priest. When she tried to complain, she was punished, highlighting how society is always trying to protect the ones in power. This trauma left a scar on her life forever. It made her more anxious and caused her to count numbers in her head. However, she did not give up, even though there felt like no reason for her to live except to win the game of life.</p>
+                            <p>Lucy’s next traumatic event happened in Vancouver when she was trying to go to Maisie’s apartment. Since she was clueless, she started asking strangers for directions, and in doing so, she encountered Walt, a pimp. He was the scum of the earth. He influenced and manipulated Lucy into thinking that he was taking her to Maisie’s residence, but in reality, he had just sold her body to an old, fat man. When Lucy realized that she was being sold as a prostitute, she thought quickly on her feet and saved herself by coming up with an excuse to go to the bathroom. Was her plan perfect? No. She was almost caught when she made a run for it, but it proves how much Lucy had evolved in this time frame to save herself from situations like these.</p>
+                            <p>Her next experience is when she is in the hospital, helpless and bedridden. She finds out her daughter Kendra could be taken away, but Clara comes to the rescue with a plan. Clara takes Lucy away in a wheelchair and the baby in a stroller using fake identity cards before the government arrives. If someone were to evaluate every single incident where Lucy managed to save herself, they might say it was just because of her friends and imply it was plot armor. I debunk that theory. Ever since her first traumatic experience, Lucy has always had a keen eye to judge people's characteristics, act in an innocent manner, and easily gain the trust of others.</p>
+                            <p>She used this ability in sync with her anxiety to map out the worst things that could happen in the future and then select the people she should be friends with. She did not like Kenny just because he sent motivating messages to her. Instead, she loved him because he was unwavering, strong, and resilient. She used him to protect her in future events. She also became friends with Clara because Clara was a resilient fighter who would never give up on her friends and would do anything to help them. Lucy knew all of this from the beginning, otherwise it would have been too perfect for events to go in her favor. Lucy was not lucky, but she forged her own luck. She did not use her anxiety as a fear of the future, but used it as a fortune teller.</p>
+                            <p>All of these examples epitomize how Lucy is the mastermind behind this story. Lucy is not only a character with massive development, but she is also an inspiration to look up to. She did not give up in the roughest times of her life. She used these experiences to evolve and be better. She symbolizes how we should not give up but learn from our mistakes. She gives us the perfect guide to be the best version of ourselves, to keep evolving, and to never give up. There is more to life than just emotions, and the game of life itself is fun to play on our own terms.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: Reflection 2 -->
+        <section id="reflection2" class="panel min-h-screen w-full flex items-center py-20 px-6 md:px-12 lg:px-24">
+            <div class="w-full max-w-7xl mx-auto flex flex-col h-full justify-center">
+                <div class="overflow-hidden mb-16 border-b border-gray-800 pb-8 flex flex-col lg:items-end">
+                    <p class="font-display text-gray-500 uppercase tracking-widest mb-4 body-reveal opacity-0">Reflection 2</p>
+                    <h2 class="text-reveal font-display text-5xl md:text-7xl font-bold uppercase tracking-tighter lg:text-right interactive-heading">Feeling for Others <br><span class="text-gray-600">(Cognitive Empathy)</span></h2>
+                </div>
+                
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 flex-col-reverse lg:flex-row">
+                    
+                    <div class="lg:col-span-8 order-2 lg:order-1">
+                        <div class="h-[650px] overflow-y-auto pr-8 custom-scrollbar text-lg md:text-xl leading-relaxed text-gray-400 font-light space-y-8 body-reveal opacity-0">
+                            <p class="first-letter:text-7xl first-letter:font-display first-letter:font-bold first-letter:mr-3 first-letter:float-left first-letter:text-light first-letter:leading-[0.8]">
+                                "I feel you" is just a phrase used by people to show empathy, but it is a simple, shallow, and heartless phrase. The phrase is about being merciful towards a person going through a rough patch. Not only that, it is a symbol of negligence in modern society. No one has the feelings or time to understand others, so they say this and move on. This is exactly how society moved on from Saul. To understand why this shallow empathy fails him, we first have to look at the depth of his trauma.
+                            </p>
+                            <p>Just imagine this. It is a peaceful morning, and all of a sudden, a massive mechanical contraption never seen before roars as loudly as a lion. It also flies like a dragon and looks like it comes from hell to punish. Then tall men come down onto your settlement. They start shooting their guns, a type of weapon that silences everything around it. It deafens you and silences its prey. Finally, it is possible to see what these weapons could do in the blink of an eye, putting holes clean through bodies. People run in fear for their lives and lose their sanity as animal instincts kick in. All one can do is try to run away like a wild animal being hunted. This is what Saul and his family experienced when he was four years old and lost his brother. A child of that age will never ever be able to process it, ruining a part of him.</p>
+                            <p>Since Saul lost his brother in such a traumatic event, he became less social because of the trauma and because there was no one his age to talk to. Later on in the story, Saul is caught too and put in a residential school. This is another traumatic event on its own because he lost his grandmother and parents in the process. This, combined with the previous trauma, compounded and turned his shyness into solitude. Since he was older and knew English, all he did was read novels, imagine stories and worlds, and think about "what ifs" to forget what happened. But he never could.</p>
+                            <p>Later in the story, a "progressive" Father Lebouletier who is secretly a child molester comes into Saul's life. He sees Saul's weakness and uses it to get close to him. Moreover, he gives Saul a game to cope with to make Saul more dependent on him. Then, when the moment comes, he rapes Saul, breaking Saul's mind as he is betrayed. This mind-breaking trauma on top of past trauma completely breaks Saul's mental fortitude. At the pinnacle of his career, Saul gives into societal racism, which is the most trivial challenge in his life from an outsider's perspective, like his coach.</p>
+                            <p>To be honest, Saul's coach really never cared about Saul as a human. He only saw him as a potential star player for his team. So when Saul faces racism, instead of trying to understand why he cannot overcome it, he gives Saul the same advice society uses: "I feel you." It is a shallow, ruthless, and heartless standard. This is what breaks many people like Saul because no one understands them. To save the "Sauls" in our modern, profit-oriented world, we have to take the time to try and understand a person's life before giving any advice or help. Letting people vent helps them. This is exemplified in <em>Indian Horse</em> when he shares his life with others at the New Dawn Center, which finally helps him.</p>
+                        </div>
+                    </div>
+
+                    <div class="lg:col-span-4 flex flex-col gap-10 order-1 lg:order-2">
+                        <!-- Book Image -->
+                        <div class="w-full max-w-[300px] aspect-[3/4] rounded-xl bg-accent flex flex-col items-center justify-center text-center p-6 border border-gray-800 image-reveal opacity-0 relative overflow-hidden group hover-float mx-auto lg:mx-0 lg:ml-auto">
+                            <svg class="w-10 h-10 mb-4 opacity-30 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
+                            <span class="font-display text-gray-400 uppercase tracking-widest z-10 text-sm">Indian Horse<br><span class="text-[10px] text-gray-600 mt-2 block">Image Placeholder</span></span>
+                            <div class="absolute inset-0 bg-gradient-to-bl from-transparent to-white/5 opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+                        </div>
+                        
+                        <!-- Media Connection -->
+                        <div class="media-card bg-dark border border-gray-800 p-8 rounded-xl hover-float opacity-0 lg:ml-auto w-full">
+                            <div class="w-full h-32 bg-accent rounded-lg mb-6 flex items-center justify-center border border-gray-800/50 relative overflow-hidden group">
+                                <span class="text-xs text-gray-500 font-display uppercase tracking-wider text-center px-4 relative z-10 transition-colors group-hover:text-light">Media Connection:<br>Historical Indigenous Hockey Archive</span>
+                                <div class="absolute inset-0 bg-white/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                            </div>
+                            <p class="text-sm text-gray-400 leading-relaxed font-light">
+                                This reflection is paired with archival photography of residential school hockey teams. It highlights the stark contrast between the sport as a coping mechanism and the reality of exploitation. Just as Saul’s coach saw him only as a potential star player rather than a traumatized human being, historical records showcase athletic achievements while ignoring the compounded trauma the children were subjected to behind closed doors.
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 4: Works Cited & Contact -->
+        <section id="contact" class="panel min-h-screen w-full flex flex-col justify-between pt-32 pb-16 px-6 md:px-12 lg:px-24 bg-[#020202] border-t border-gray-900">
+            <div class="w-full max-w-5xl mx-auto">
+                <div class="overflow-hidden mb-16">
+                    <h2 class="text-reveal font-display text-5xl md:text-7xl font-bold uppercase tracking-tighter interactive-heading">Works Cited</h2>
+                </div>
+                
+                <ul class="space-y-10 body-reveal opacity-0">
+                    <li class="group cursor-default border-b border-gray-800 pb-8 hover:border-gray-500 transition-colors duration-500 flex flex-col md:flex-row md:items-baseline gap-4">
+                        <span class="font-display text-sm text-gray-600 uppercase tracking-widest group-hover:text-gray-400 transition-colors">01</span>
+                        <p class="text-xl md:text-2xl font-light text-gray-400 group-hover:text-light transition-colors duration-300 transform group-hover:translate-x-2">
+                            Good, Michelle. <em class="font-normal text-gray-300 group-hover:text-white transition-colors duration-300">Five Little Indians</em>. Harper Perennial, 2020.
+                        </p>
+                    </li>
+                    <li class="group cursor-default border-b border-gray-800 pb-8 hover:border-gray-500 transition-colors duration-500 flex flex-col md:flex-row md:items-baseline gap-4">
+                        <span class="font-display text-sm text-gray-600 uppercase tracking-widest group-hover:text-gray-400 transition-colors">02</span>
+                        <p class="text-xl md:text-2xl font-light text-gray-400 group-hover:text-light transition-colors duration-300 transform group-hover:translate-x-2">
+                            Wagamese, Richard. <em class="font-normal text-gray-300 group-hover:text-white transition-colors duration-300">Indian Horse</em>. Douglas & McIntyre, 2012.
+                        </p>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="w-full flex flex-col items-center mt-32 body-reveal opacity-0">
+                <p class="text-sm font-display text-gray-600 uppercase tracking-widest mb-6">Let's Connect</p>
+                <div class="relative overflow-hidden group cursor-pointer">
+                    <a href="mailto:shubhangnaththakur@gmai.com" class="email-link inline-block font-display text-2xl md:text-5xl lg:text-7xl font-bold uppercase tracking-tighter text-gray-300 transition-transform duration-500 group-hover:-translate-y-[110%]">
+                        shubhangnaththakur@gmai.com
+                    </a>
+                    <a href="mailto:shubhangnaththakur@gmai.com" class="absolute top-0 left-0 inline-block font-display text-2xl md:text-5xl lg:text-7xl font-bold uppercase tracking-tighter text-light translate-y-[110%] transition-transform duration-500 group-hover:translate-y-0" aria-hidden="true">
+                        shubhangnaththakur@gmai.com
+                    </a>
+                </div>
+            </div>
+            
+            <div class="w-full flex justify-between items-center mt-20 text-xs font-display uppercase tracking-widest text-gray-600 body-reveal opacity-0">
+                <span>© 2026 S.N.T</span>
+                <span>Toronto, CA</span>
+            </div>
+        </section>
+    </main>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.19/bundled/lenis.min.js"></script>
+    <script src="index.js"></script>
+</body>
+</html>

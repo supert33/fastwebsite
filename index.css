@@ -1,0 +1,110 @@
+/* Custom CSS for Brutalist & Smooth Animations */
+
+:root {
+    --dark: #050505;
+    --light: #f5f5f5;
+    --accent: #111111;
+}
+
+/* Ensure body takes full height and hides overflow during loading */
+html, body {
+    margin: 0;
+    padding: 0;
+    background-color: var(--dark);
+    color: var(--light);
+}
+
+/* Lenis Smooth Scroll Configuration */
+html.lenis {
+    height: auto;
+}
+.lenis.lenis-smooth {
+    scroll-behavior: auto;
+}
+.lenis.lenis-smooth [data-lenis-prevent] {
+    overscroll-behavior: contain;
+}
+.lenis.lenis-stopped {
+    overflow: hidden;
+}
+.lenis.lenis-scrolling iframe {
+    pointer-events: none;
+}
+
+/* Custom Scrollbar for Text Areas (Brutalist style) */
+.custom-scrollbar::-webkit-scrollbar {
+    width: 6px;
+}
+.custom-scrollbar::-webkit-scrollbar-track {
+    background: transparent;
+    border-left: 1px solid #1a1a1a;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+    background: #333;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: #666;
+}
+
+/* Hover effect for navigation links */
+.hover-text {
+    position: relative;
+    display: inline-block;
+    transition: color 0.3s ease;
+    padding-bottom: 2px;
+}
+.hover-text::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    transform: scaleX(0);
+    height: 1px;
+    bottom: 0;
+    left: 0;
+    background-color: var(--light);
+    transform-origin: bottom right;
+    transition: transform 0.4s cubic-bezier(0.86, 0, 0.07, 1);
+}
+.hover-text:hover::after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+}
+.hover-text:hover {
+    color: #fff;
+}
+
+/* Interactive Image & Card float animation on hover */
+.hover-float {
+    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.5s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.5s ease;
+}
+.hover-float:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 30px 60px rgba(0,0,0,0.6);
+    border-color: #444;
+}
+
+/* Interactive Headings */
+.interactive-heading {
+    transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), letter-spacing 0.4s ease;
+    display: inline-block;
+}
+.interactive-heading:hover {
+    transform: skewX(-2deg);
+    letter-spacing: 0.02em;
+}
+
+/* Preloader Background */
+.preloader {
+    background-color: var(--dark);
+    background-image: radial-gradient(circle at center, #111 0%, #050505 100%);
+}
+
+/* Selection */
+::selection {
+    background: var(--light);
+    color: var(--dark);
+}
+::-moz-selection {
+    background: var(--light);
+    color: var(--dark);
+}
