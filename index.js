@@ -232,16 +232,16 @@ document.addEventListener("DOMContentLoaded", () => {
     // --- Carousel Modal Logic ---
     const modalData = {
         games: [
-            { title: "Hearts of Iron IV", img: "https://upload.wikimedia.org/wikipedia/en/3/30/Hearts_of_Iron_IV_cover_art.jpg" },
-            { title: "Chess", img: "https://images.unsplash.com/photo-1529699211952-734e80c4d42b?auto=format&fit=crop&q=80&w=800" },
-            { title: "Call of Duty Warzone", img: "https://upload.wikimedia.org/wikipedia/en/1/1b/Call_of_Duty_Warzone_2.0_cover_art.jpg" },
-            { title: "Elden Ring", img: "https://upload.wikimedia.org/wikipedia/en/b/b9/Elden_Ring_Box_art.jpg" },
-            { title: "Age of Empires IV", img: "https://upload.wikimedia.org/wikipedia/en/f/f9/Age_of_Empires_IV_cover_art.jpg" }
+            { title: "Hearts of Iron IV", img: "https://images.igdb.com/igdb/image/upload/t_1080p/co1vce.jpg" },
+            { title: "Chess", img: "https://images.unsplash.com/photo-1529699211952-734e80c4d42b?auto=format&fit=crop&q=80&w=1920" },
+            { title: "Call of Duty Warzone", img: "https://images.igdb.com/igdb/image/upload/t_1080p/co2ojs.jpg" },
+            { title: "Elden Ring", img: "https://images.igdb.com/igdb/image/upload/t_1080p/co4jni.jpg" },
+            { title: "Age of Empires IV", img: "https://images.igdb.com/igdb/image/upload/t_1080p/co3tzh.jpg" }
         ],
         novels: [
-            { title: "Reverend Insanity", img: "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&q=80&w=800" },
-            { title: "Lord of the Mysteries", img: "https://images.unsplash.com/photo-1519072996726-2184d0cb53f5?auto=format&fit=crop&q=80&w=800" },
-            { title: "That Time I Got Reincarnated as a Slime", img: "https://images.unsplash.com/photo-1626080308337-3e117dd37b46?auto=format&fit=crop&q=80&w=800" }
+            { title: "Reverend Insanity", img: "https://images.unsplash.com/photo-1618331835717-801e976710b2?auto=format&fit=crop&q=80&w=1920" },
+            { title: "Lord of the Mysteries", img: "https://images.unsplash.com/photo-1507608616759-54f48f0af0ee?auto=format&fit=crop&q=80&w=1920" },
+            { title: "That Time I Got Reincarnated as a Slime", img: "https://images.unsplash.com/photo-1601004890684-d8cbf643f5f2?auto=format&fit=crop&q=80&w=1920" }
         ]
     };
 
@@ -261,39 +261,53 @@ document.addEventListener("DOMContentLoaded", () => {
     function openModal(type) {
         currentArray = modalData[type];
         currentIndex = 0;
-        updateCarouselContent(false);
+        updateCarouselContent(0, false);
 
         modal.classList.remove('hidden');
         modal.classList.add('flex');
         
         lenis.stop(); // Stop scroll when modal open
 
-        gsap.to(modal, { opacity: 1, duration: 0.3, ease: "power2.out" });
-        gsap.to(modalCard, { scale: 1, duration: 0.4, ease: "back.out(1.2, 0.8)", delay: 0.1 });
+        // Improved entrance animation
+        gsap.to(modal, { opacity: 1, duration: 0.4, ease: "power2.out" });
+        gsap.fromTo(modalCard, 
+            { scale: 0.8, y: 50, rotationX: 15, opacity: 0, transformPerspective: 1000 },
+            { scale: 1, y: 0, rotationX: 0, opacity: 1, duration: 0.6, ease: "back.out(1.2)", delay: 0.1 }
+        );
     }
 
     function closeModal() {
-        gsap.to(modalCard, { scale: 0.95, duration: 0.3, ease: "power2.in" });
-        gsap.to(modal, { opacity: 0, duration: 0.3, ease: "power2.in", onComplete: () => {
+        gsap.to(modalCard, { scale: 0.9, y: 30, opacity: 0, duration: 0.3, ease: "power2.in" });
+        gsap.to(modal, { opacity: 0, duration: 0.3, ease: "power2.in", delay: 0.1, onComplete: () => {
             modal.classList.add('hidden');
             modal.classList.remove('flex');
             lenis.start();
         }});
     }
 
-    function updateCarouselContent(animate = true) {
+    function updateCarouselContent(direction = 1, animate = true) {
         const item = currentArray[currentIndex];
         
         if (animate) {
-            gsap.to(carouselImage, { opacity: 0, duration: 0.2, onComplete: () => {
+            // Animate out
+            const outX = direction === 1 ? -100 : 100;
+            const inX = direction === 1 ? 100 : -100;
+            
+            gsap.to(carouselImage, { opacity: 0, x: outX, duration: 0.3, ease: "power2.in", onComplete: () => {
                 carouselImage.src = item.img;
                 carouselTitle.innerText = item.title;
-                gsap.to(carouselImage, { opacity: 1, duration: 0.3 });
+                
+                // Animate in
+                gsap.fromTo(carouselImage, 
+                    { x: inX, opacity: 0 },
+                    { x: 0, opacity: 1, duration: 0.5, ease: "power3.out" }
+                );
             }});
         } else {
             carouselImage.src = item.img;
             carouselTitle.innerText = item.title;
-            gsap.to(carouselImage, { opacity: 1, duration: 0.4, delay: 0.2 });
+            gsap.set(carouselImage, { x: 0 });
+            gsap.to(carouselImage, { opacity: 1, duration: 0.6, delay: 0.2, ease: "power2.out" });
         }
     }
 
@@ -309,12 +323,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
     btnNext.addEventListener('click', () => {
         currentIndex = (currentIndex + 1) % currentArray.length;
-        updateCarouselContent();
+        updateCarouselContent(1);
     });
 
     btnPrev.addEventListener('click', () => {
         currentIndex = (currentIndex - 1 + currentArray.length) % currentArray.length;
-        updateCarouselContent();
+        updateCarouselContent(-1);
     });
 
 });
