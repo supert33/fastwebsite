@@ -170,19 +170,19 @@ window.addEventListener("load", () => {
                 });
             }
             
-            // Fade out the surrounding text and shader canvas
-            gsap.to('.portal-text, #shader-container', {
+            // Fade out only the surrounding text
+            gsap.to('.portal-text', {
                 opacity: 0,
-                duration: 1.5,
+                duration: 1.0,
                 ease: "power2.inOut"
             });
 
-            // Scale up the portal massively
-            gsap.to(portalRing, {
-                scale: 50,
+            // Zoom the black hole TOWARDS the user by scaling up the entire shader canvas
+            gsap.to('#shader-container', {
+                scale: 15,
                 opacity: 0,
-                duration: 1.5,
-                ease: "power2.inOut",
+                duration: 2.0,
+                ease: "power2.in",
                 onComplete: () => {
                     gsap.to(preloader, {
                         opacity: 0,
