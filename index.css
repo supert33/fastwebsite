@@ -105,8 +105,21 @@ html.lenis {
     filter: saturate(2) contrast(1.5) blur(10px);
 }
 .portal-hole {
-    box-shadow: 0 0 50px rgba(0,0,0,0.8) inset, 0 0 30px rgba(255,255,255,0.05);
-    transition: transform 1.5s cubic-bezier(0.16, 1, 0.3, 1), opacity 1s ease, filter 1.5s ease;
+    background-color: #000;
+    box-shadow: 
+        inset 0 0 50px 20px #000,
+        0 0 0 4px rgba(255,255,255,0.05),
+        0 0 30px 10px rgba(255, 150, 50, 0.4),
+        0 0 80px 30px rgba(100, 50, 255, 0.2);
+    transition: transform 1.5s cubic-bezier(0.16, 1, 0.3, 1), opacity 1s ease, filter 1.5s ease, box-shadow 0.5s ease;
+}
+.portal-hole:hover {
+    box-shadow: 
+        inset 0 0 50px 20px #000,
+        0 0 0 6px rgba(255,255,255,0.15),
+        0 0 50px 15px rgba(255, 150, 50, 0.6),
+        0 0 120px 40px rgba(100, 50, 255, 0.4);
+    transform: scale(1.05);
 }
 
 /* Paragraph Animation (Hover Text) */
