@@ -64,7 +64,10 @@ if (shaderContainer && window.THREE) {
             this.renderer.setSize(shaderContainer.clientWidth, shaderContainer.clientHeight);
             shaderContainer.appendChild(this.renderer.domElement);
 
-            this.uniforms.u_resolution.value.set(shaderContainer.clientWidth, shaderContainer.clientHeight);
+            this.uniforms.u_resolution.value.set(
+                shaderContainer.clientWidth * window.devicePixelRatio, 
+                shaderContainer.clientHeight * window.devicePixelRatio
+            );
 
             // Load the sky background texture
             textureLoader.load("https://images.unsplash.com/photo-1495616811223-4d98c6e9c869?q=80&w=2000&auto=format&fit=crop", (tex) => {
@@ -136,7 +139,10 @@ if (shaderContainer && window.THREE) {
         onResize: function() {
             if (!shaderContainer) return;
             this.renderer.setSize(shaderContainer.clientWidth, shaderContainer.clientHeight);
-            this.uniforms.u_resolution.value.set(shaderContainer.clientWidth, shaderContainer.clientHeight);
+            this.uniforms.u_resolution.value.set(
+                shaderContainer.clientWidth * window.devicePixelRatio, 
+                shaderContainer.clientHeight * window.devicePixelRatio
+            );
         },
         animate: function() {
             requestAnimationFrame(this.animate.bind(this));
