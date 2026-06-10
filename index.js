@@ -239,9 +239,9 @@ document.addEventListener("DOMContentLoaded", () => {
             { title: "Age of Empires IV", img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSsbDV7CfSkDk9ioIxBsKOQNLqLAjvJTh94NLgGmcdkhisKsGoPcFMbqzu3HM754xQ5skdC&s=10" }
         ],
         novels: [
-            { title: "Reverend Insanity", img: "https://www.reddit.com/media?url=https%3A%2F%2Fi.redd.it%2F9igsu959k1wc1.jpeg" },
+            { title: "Reverend Insanity", img: "reverend_insanity.jpg" },
             { title: "Lord of the Mysteries", img: "https://static0.srcdn.com/wordpress/wp-content/uploads/2025/06/lord-of-mysteries-poster.jpg?w=1200&h=675&fit=crop" },
-            { title: "That Time I Got Reincarnated as a Slime", img: "https://www.reddit.com/media?url=https%3A%2F%2Fpreview.redd.it%2Fthose-familiar-with-ln-art-are-you-happy-with-the-art-style-v0-rvpdxzbrt93d1.png%3Fwidth%3D412%26format%3Dpng%26auto%3Dwebp%26s%3D4fb471d0c4e8bd1b53f217abe1c87317f837ee91" }
+            { title: "That Time I Got Reincarnated as a Slime", img: "slime.png" }
         ]
     };
 
@@ -272,13 +272,13 @@ document.addEventListener("DOMContentLoaded", () => {
         gsap.to(modal, { opacity: 1, duration: 0.5, ease: "power2.inOut" });
         gsap.fromTo(modalCard, 
             { scale: 0.85, y: 30, rotationX: 10, opacity: 0, transformPerspective: 1200 },
-            { scale: 1, y: 0, rotationX: 0, opacity: 1, duration: 0.8, ease: "power4.out", delay: 0.1 }
+            { scale: 1, y: 0, rotationX: 0, opacity: 1, duration: 0.8, ease: "expo.out", delay: 0.1 }
         );
     }
 
     function closeModal() {
-        gsap.to(modalCard, { scale: 0.95, y: -20, opacity: 0, duration: 0.4, ease: "power3.inOut" });
-        gsap.to(modal, { opacity: 0, duration: 0.4, ease: "power3.inOut", delay: 0.1, onComplete: () => {
+        gsap.to(modalCard, { scale: 0.95, y: -20, opacity: 0, duration: 0.4, ease: "expo.in" });
+        gsap.to(modal, { opacity: 0, duration: 0.4, ease: "power2.inOut", delay: 0.1, onComplete: () => {
             modal.classList.add('hidden');
             modal.classList.remove('flex');
             lenis.start();
@@ -293,21 +293,21 @@ document.addEventListener("DOMContentLoaded", () => {
             const outX = direction === 1 ? -150 : 150;
             const inX = direction === 1 ? 150 : -150;
             
-            gsap.to(carouselImage, { opacity: 0, x: outX, duration: 0.4, ease: "power3.inOut", onComplete: () => {
+            gsap.to(carouselImage, { opacity: 0, x: outX, duration: 0.4, ease: "expo.in", onComplete: () => {
                 carouselImage.src = item.img;
                 carouselTitle.innerText = item.title;
                 
                 // Animate in
                 gsap.fromTo(carouselImage, 
                     { x: inX, opacity: 0 },
-                    { x: 0, opacity: 1, duration: 0.6, ease: "power4.out" }
+                    { x: 0, opacity: 1, duration: 0.6, ease: "expo.out" }
                 );
             }});
         } else {
             carouselImage.src = item.img;
             carouselTitle.innerText = item.title;
             gsap.set(carouselImage, { x: 0 });
-            gsap.to(carouselImage, { opacity: 1, duration: 0.8, delay: 0.2, ease: "power3.out" });
+            gsap.to(carouselImage, { opacity: 1, duration: 0.8, delay: 0.2, ease: "expo.out" });
         }
     }
 
