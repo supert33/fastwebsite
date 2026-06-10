@@ -82,7 +82,7 @@ function initEntranceAnimation() {
     const tl = gsap.timeline();
     
     tl.fromTo("#about .text-reveal", 
-        { y: 120, opacity: 0, rotate: 2 },
+        { y: -120, opacity: 0, rotate: -2 }, // Drops from the top down
         { y: 0, opacity: 1, rotate: 0, duration: 1.5, ease: "power4.out" }
     )
     .to("#about .image-reveal", {
@@ -194,6 +194,37 @@ document.addEventListener("DOMContentLoaded", () => {
                 color: "#9ca3af",
                 duration: 0.5, 
                 ease: "power2.out" 
+            });
+        });
+    });
+
+    // Magnetic "Kinetic" Hover effect for paragraphs and headings
+    const kineticElements = document.querySelectorAll('#reflection1 p, #reflection2 p, .interactive-heading');
+    kineticElements.forEach(el => {
+        el.addEventListener('mousemove', (e) => {
+            const rect = el.getBoundingClientRect();
+            // Calculate mouse position relative to the center of the element
+            const x = e.clientX - rect.left - rect.width / 2;
+            const y = e.clientY - rect.top - rect.height / 2;
+            
+            gsap.to(el, {
+                x: x * 0.05,
+                y: y * 0.05,
+                rotation: x * 0.01,
+                color: "#ffffff",
+                duration: 0.6,
+                ease: "power3.out"
+            });
+        });
+        
+        el.addEventListener('mouseleave', () => {
+            gsap.to(el, {
+                x: 0,
+                y: 0,
+                rotation: 0,
+                color: "", // Resets to original CSS color
+                duration: 1,
+                ease: "elastic.out(1, 0.3)"
             });
         });
     });
