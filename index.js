@@ -228,4 +228,93 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         });
     });
+
+    // --- Carousel Modal Logic ---
+    const modalData = {
+        games: [
+            { title: "Hearts of Iron IV", img: "https://upload.wikimedia.org/wikipedia/en/3/30/Hearts_of_Iron_IV_cover_art.jpg" },
+            { title: "Chess", img: "https://images.unsplash.com/photo-1529699211952-734e80c4d42b?auto=format&fit=crop&q=80&w=800" },
+            { title: "Call of Duty Warzone", img: "https://upload.wikimedia.org/wikipedia/en/1/1b/Call_of_Duty_Warzone_2.0_cover_art.jpg" },
+            { title: "Elden Ring", img: "https://upload.wikimedia.org/wikipedia/en/b/b9/Elden_Ring_Box_art.jpg" },
+            { title: "Age of Empires IV", img: "https://upload.wikimedia.org/wikipedia/en/f/f9/Age_of_Empires_IV_cover_art.jpg" }
+        ],
+        novels: [
+            { title: "Reverend Insanity", img: "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&q=80&w=800" },
+            { title: "Lord of the Mysteries", img: "https://images.unsplash.com/photo-1519072996726-2184d0cb53f5?auto=format&fit=crop&q=80&w=800" },
+            { title: "That Time I Got Reincarnated as a Slime", img: "https://images.unsplash.com/photo-1626080308337-3e117dd37b46?auto=format&fit=crop&q=80&w=800" }
+        ]
+    };
+
+    let currentArray = [];
+    let currentIndex = 0;
+
+    const modal = document.getElementById('carousel-modal');
+    const modalCard = document.getElementById('modal-card');
+    const modalBackdrop = document.getElementById('modal-backdrop');
+    const carouselImage = document.getElementById('carousel-image');
+    const carouselTitle = document.getElementById('carousel-title');
+    const btnNext = document.getElementById('carousel-next');
+    const btnPrev = document.getElementById('carousel-prev');
+    const btnClose = document.getElementById('modal-close');
+    const triggers = document.querySelectorAll('.modal-trigger');
+
+    function openModal(type) {
+        currentArray = modalData[type];
+        currentIndex = 0;
+        updateCarouselContent(false);
+
+        modal.classList.remove('hidden');
+        modal.classList.add('flex');
+        
+        lenis.stop(); // Stop scroll when modal open
+
+        gsap.to(modal, { opacity: 1, duration: 0.3, ease: "power2.out" });
+        gsap.to(modalCard, { scale: 1, duration: 0.4, ease: "back.out(1.2, 0.8)", delay: 0.1 });
+    }
+
+    function closeModal() {
+        gsap.to(modalCard, { scale: 0.95, duration: 0.3, ease: "power2.in" });
+        gsap.to(modal, { opacity: 0, duration: 0.3, ease: "power2.in", onComplete: () => {
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+            lenis.start();
+        }});
+    }
+
+    function updateCarouselContent(animate = true) {
+        const item = currentArray[currentIndex];
+        
+        if (animate) {
+            gsap.to(carouselImage, { opacity: 0, duration: 0.2, onComplete: () => {
+                carouselImage.src = item.img;
+                carouselTitle.innerText = item.title;
+                gsap.to(carouselImage, { opacity: 1, duration: 0.3 });
+            }});
+        } else {
+            carouselImage.src = item.img;
+            carouselTitle.innerText = item.title;
+            gsap.to(carouselImage, { opacity: 1, duration: 0.4, delay: 0.2 });
+        }
+    }
+
+    triggers.forEach(trigger => {
+        trigger.addEventListener('click', (e) => {
+            const type = e.target.getAttribute('data-type');
+            if(type) openModal(type);
+        });
+    });
+
+    btnClose.addEventListener('click', closeModal);
+    modalBackdrop.addEventListener('click', closeModal);
+
+    btnNext.addEventListener('click', () => {
+        currentIndex = (currentIndex + 1) % currentArray.length;
+        updateCarouselContent();
+    });
+
+    btnPrev.addEventListener('click', () => {
+        currentIndex = (currentIndex - 1 + currentArray.length) % currentArray.length;
+        updateCarouselContent();
+    });
+
 });

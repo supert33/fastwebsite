@@ -82,7 +82,7 @@
                     
                     <div class="text-gray-400 text-lg leading-relaxed space-y-5 font-light body-reveal opacity-0 max-w-2xl">
                         <p>I strike a rare balance between intense analytical rigor and highly disciplined creativity. I'm a Grade 11 student at Earl Haig Secondary School here in Toronto. I moved to Canada in May 2025, which has been a pretty massive shift.</p>
-                        <p>When I'm not doing coursework for NBE3U1, I like to program, play strategy games, play shooter games, and read light novels. I also lift at the gym and get way too into the science of cooking, specifically pastry chemistry and molecular gastronomy.</p>
+                        <p>When I'm not doing coursework for NBE3U1, I like to program, play <span class="text-red-500 cursor-pointer hover:text-red-400 transition-colors modal-trigger font-medium" data-type="games">strategy games, play shooter games</span>, and read <span class="text-red-500 cursor-pointer hover:text-red-400 transition-colors modal-trigger font-medium" data-type="novels">light novels</span>. I also lift at the gym and get way too into the science of cooking, specifically pastry chemistry and molecular gastronomy.</p>
                     </div>
                 </div>
             </div>
@@ -230,6 +230,36 @@
             </div>
         </section>
     </main>
+
+    <!-- Carousel Modal -->
+    <div id="carousel-modal" class="fixed inset-0 z-[200] hidden items-center justify-center opacity-0">
+        <div class="absolute inset-0 bg-dark/90 backdrop-blur-sm" id="modal-backdrop"></div>
+        <div class="relative w-full max-w-2xl bg-accent border border-gray-800 rounded-2xl overflow-hidden shadow-2xl p-6 md:p-10 transform scale-95" id="modal-card">
+            <button id="modal-close" class="absolute top-4 right-4 text-gray-500 hover:text-white transition-colors z-20">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+            </button>
+            
+            <div class="relative w-full aspect-video rounded-xl overflow-hidden bg-dark border border-gray-800 flex items-center justify-center mb-8">
+                <img id="carousel-image" src="" alt="Carousel Content" class="w-full h-full object-cover opacity-0 transition-opacity duration-300">
+                
+                <!-- Arrows -->
+                <button id="carousel-prev" class="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-dark/80 text-white rounded-full flex items-center justify-center hover:bg-red-500 transition-colors border border-gray-700">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+                    </svg>
+                </button>
+                <button id="carousel-next" class="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-dark/80 text-white rounded-full flex items-center justify-center hover:bg-red-500 transition-colors border border-gray-700">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                    </svg>
+                </button>
+            </div>
+            
+            <h3 id="carousel-title" class="font-display text-3xl font-bold uppercase tracking-tighter text-center"></h3>
+        </div>
+    </div>
 
     <!-- Scripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
