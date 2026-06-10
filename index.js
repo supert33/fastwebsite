@@ -367,6 +367,12 @@ document.addEventListener("DOMContentLoaded", () => {
             { title: "Reverend Insanity", img: "reverend_insanity.jpg" },
             { title: "Lord of the Mysteries", img: "https://static0.srcdn.com/wordpress/wp-content/uploads/2025/06/lord-of-mysteries-poster.jpg?w=1200&h=675&fit=crop" },
             { title: "That Time I Got Reincarnated as a Slime", img: "slime.png" }
+        ],
+        cooking: [
+            { title: "Chilli Chicken", img: "assets/chilli_chicken.jpg" },
+            { title: "Mango Mousse Chocolate Cake", img: "assets/mango_mousse.jpg" },
+            { title: "Pizza", img: "assets/pizza.jpg" },
+            { title: "Caramel Chocolate Vanilla Cheesecake", img: "assets/caramel_cheesecake.jpg" }
         ]
     };
 
