@@ -232,16 +232,16 @@ document.addEventListener("DOMContentLoaded", () => {
     // --- Carousel Modal Logic ---
     const modalData = {
         games: [
-            { title: "Hearts of Iron IV", img: "https://images.igdb.com/igdb/image/upload/t_1080p/co1vce.jpg" },
+            { title: "Hearts of Iron IV", img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTcsPoe1LSmx-r3coFqAKSJI8SMo_hG6hEYUTLsf1Rjt7_NaMljCRzSUsuupB3MjmFeP3_avg&s=10" },
             { title: "Chess", img: "https://images.unsplash.com/photo-1529699211952-734e80c4d42b?auto=format&fit=crop&q=80&w=1920" },
-            { title: "Call of Duty Warzone", img: "https://images.igdb.com/igdb/image/upload/t_1080p/co2ojs.jpg" },
-            { title: "Elden Ring", img: "https://images.igdb.com/igdb/image/upload/t_1080p/co4jni.jpg" },
-            { title: "Age of Empires IV", img: "https://images.igdb.com/igdb/image/upload/t_1080p/co3tzh.jpg" }
+            { title: "Call of Duty Warzone", img: "https://i.ytimg.com/vi/hcClQ5wYUjU/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLAxvSgVTRLPbu2IcZrGI7PE7Z2SQw" },
+            { title: "Elden Ring", img: "https://m.media-amazon.com/images/M/MV5BZGQxMjYyOTUtNjYyMC00NzdmLWI4YmYtMDhiODU3Njc5ZDJkXkEyXkFqcGc@._V1_QL75_UX190_CR0,2,190,281_.jpg" },
+            { title: "Age of Empires IV", img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSsbDV7CfSkDk9ioIxBsKOQNLqLAjvJTh94NLgGmcdkhisKsGoPcFMbqzu3HM754xQ5skdC&s=10" }
         ],
         novels: [
-            { title: "Reverend Insanity", img: "https://images.unsplash.com/photo-1618331835717-801e976710b2?auto=format&fit=crop&q=80&w=1920" },
-            { title: "Lord of the Mysteries", img: "https://images.unsplash.com/photo-1507608616759-54f48f0af0ee?auto=format&fit=crop&q=80&w=1920" },
-            { title: "That Time I Got Reincarnated as a Slime", img: "https://images.unsplash.com/photo-1601004890684-d8cbf643f5f2?auto=format&fit=crop&q=80&w=1920" }
+            { title: "Reverend Insanity", img: "https://www.reddit.com/media?url=https%3A%2F%2Fi.redd.it%2F9igsu959k1wc1.jpeg" },
+            { title: "Lord of the Mysteries", img: "https://static0.srcdn.com/wordpress/wp-content/uploads/2025/06/lord-of-mysteries-poster.jpg?w=1200&h=675&fit=crop" },
+            { title: "That Time I Got Reincarnated as a Slime", img: "https://www.reddit.com/media?url=https%3A%2F%2Fpreview.redd.it%2Fthose-familiar-with-ln-art-are-you-happy-with-the-art-style-v0-rvpdxzbrt93d1.png%3Fwidth%3D412%26format%3Dpng%26auto%3Dwebp%26s%3D4fb471d0c4e8bd1b53f217abe1c87317f837ee91" }
         ]
     };
 
@@ -269,16 +269,16 @@ document.addEventListener("DOMContentLoaded", () => {
         lenis.stop(); // Stop scroll when modal open
 
         // Improved entrance animation
-        gsap.to(modal, { opacity: 1, duration: 0.4, ease: "power2.out" });
+        gsap.to(modal, { opacity: 1, duration: 0.5, ease: "power2.inOut" });
         gsap.fromTo(modalCard, 
-            { scale: 0.8, y: 50, rotationX: 15, opacity: 0, transformPerspective: 1000 },
-            { scale: 1, y: 0, rotationX: 0, opacity: 1, duration: 0.6, ease: "back.out(1.2)", delay: 0.1 }
+            { scale: 0.85, y: 30, rotationX: 10, opacity: 0, transformPerspective: 1200 },
+            { scale: 1, y: 0, rotationX: 0, opacity: 1, duration: 0.8, ease: "power4.out", delay: 0.1 }
         );
     }
 
     function closeModal() {
-        gsap.to(modalCard, { scale: 0.9, y: 30, opacity: 0, duration: 0.3, ease: "power2.in" });
-        gsap.to(modal, { opacity: 0, duration: 0.3, ease: "power2.in", delay: 0.1, onComplete: () => {
+        gsap.to(modalCard, { scale: 0.95, y: -20, opacity: 0, duration: 0.4, ease: "power3.inOut" });
+        gsap.to(modal, { opacity: 0, duration: 0.4, ease: "power3.inOut", delay: 0.1, onComplete: () => {
             modal.classList.add('hidden');
             modal.classList.remove('flex');
             lenis.start();
@@ -290,24 +290,24 @@ document.addEventListener("DOMContentLoaded", () => {
         
         if (animate) {
             // Animate out
-            const outX = direction === 1 ? -100 : 100;
-            const inX = direction === 1 ? 100 : -100;
+            const outX = direction === 1 ? -150 : 150;
+            const inX = direction === 1 ? 150 : -150;
             
-            gsap.to(carouselImage, { opacity: 0, x: outX, duration: 0.3, ease: "power2.in", onComplete: () => {
+            gsap.to(carouselImage, { opacity: 0, x: outX, duration: 0.4, ease: "power3.inOut", onComplete: () => {
                 carouselImage.src = item.img;
                 carouselTitle.innerText = item.title;
                 
                 // Animate in
                 gsap.fromTo(carouselImage, 
                     { x: inX, opacity: 0 },
-                    { x: 0, opacity: 1, duration: 0.5, ease: "power3.out" }
+                    { x: 0, opacity: 1, duration: 0.6, ease: "power4.out" }
                 );
             }});
         } else {
             carouselImage.src = item.img;
             carouselTitle.innerText = item.title;
             gsap.set(carouselImage, { x: 0 });
-            gsap.to(carouselImage, { opacity: 1, duration: 0.6, delay: 0.2, ease: "power2.out" });
+            gsap.to(carouselImage, { opacity: 1, duration: 0.8, delay: 0.2, ease: "power3.out" });
         }
     }
 
