@@ -32,12 +32,12 @@
 </head>
 <body class="bg-dark text-light antialiased overflow-x-hidden selection:bg-light selection:text-dark">
     <!-- Preloader -->
-    <div class="preloader fixed inset-0 z-[100] bg-dark flex items-center justify-center flex-col pointer-events-none">
-        <div class="overflow-hidden">
-            <h1 class="preloader-text font-display text-4xl md:text-6xl uppercase tracking-tighter translate-y-full">Entering</h1>
-        </div>
-        <div class="overflow-hidden mt-2">
-            <h1 class="preloader-text font-display text-4xl md:text-6xl uppercase tracking-tighter text-gray-500 translate-y-full">The Mind</h1>
+    <div id="portal-preloader" class="fixed inset-0 z-[100] bg-dark flex items-center justify-center overflow-hidden">
+        <img src="https://images.unsplash.com/photo-1495616811223-4d98c6e9c869?q=80&w=2000&auto=format&fit=crop" id="sky-bg" class="absolute inset-0 w-full h-full object-cover opacity-60 mix-blend-screen pointer-events-none" alt="Sky">
+        <div class="absolute inset-0 bg-dark/80 backdrop-blur-md pointer-events-none z-0"></div>
+        <div id="portal-ring" class="w-48 h-48 md:w-64 md:h-64 rounded-full border border-gray-500 relative cursor-pointer group flex items-center justify-center z-10 overflow-hidden portal-hole bg-black">
+            <div class="absolute inset-0 bg-white/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+            <h1 class="font-display text-lg md:text-xl uppercase tracking-[0.2em] group-hover:tracking-[0.4em] transition-all duration-500 text-light z-10">Enter</h1>
         </div>
     </div>
 
@@ -91,15 +91,15 @@
         </section>
 
         <!-- Section 2: Reflection 1 -->
-        <section id="reflection1" class="panel min-h-screen w-full flex items-center py-20 px-6 md:px-12 lg:px-24 bg-[#0a0a0a]">
+        <section id="reflection1" class="panel min-h-screen w-full py-20 px-6 md:px-12 lg:px-24 bg-[#0a0a0a]">
             <div class="w-full max-w-7xl mx-auto flex flex-col h-full justify-center">
                 <div class="overflow-hidden mb-16 border-b border-gray-800 pb-8">
                     <p class="font-display text-gray-500 uppercase tracking-widest mb-4 body-reveal opacity-0">Reflection 1</p>
                     <h2 class="text-reveal font-display text-5xl md:text-7xl font-bold uppercase tracking-tighter interactive-heading">The Mastermind <span class="text-gray-600">(Holism)</span></h2>
                 </div>
                 
-                <div class="grid grid-cols-1 lg:grid-cols-12 gap-16">
-                    <div class="lg:col-span-4 flex flex-col gap-10">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 relative">
+                    <div class="lg:col-span-4 flex flex-col gap-10 sticky top-32 h-fit pb-10">
                         <!-- Book Image -->
                         <div class="w-full max-w-[300px] aspect-[3/4] rounded-xl bg-accent flex flex-col items-center justify-center text-center p-6 border border-gray-800 image-reveal opacity-0 relative overflow-hidden group hover-float mx-auto lg:mx-0">
                             <svg class="w-10 h-10 mb-4 opacity-30 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
@@ -120,7 +120,7 @@
                     </div>
                     
                     <div class="lg:col-span-8">
-                        <div class="h-[650px] overflow-y-auto pr-8 custom-scrollbar text-lg md:text-xl leading-relaxed text-gray-400 font-light space-y-8 body-reveal opacity-0">
+                        <div class="pr-8 text-lg md:text-xl leading-relaxed text-gray-400 font-light space-y-8 body-reveal opacity-0">
                             <p class="first-letter:text-7xl first-letter:font-display first-letter:font-bold first-letter:mr-3 first-letter:float-left first-letter:text-light first-letter:leading-[0.8]">
                                 95 percent of humans live a happy life. This is false in the same way that society fakes its care for individuals. This is because society only cares about profits and the people who control society by creating laws. Lucy is an example of this fake care, and her story highlights how society stabs you in the back. But Lucy is not an ordinary woman. She is resilient and becomes a strong woman by the end of the story.
                             </p>
@@ -136,7 +136,7 @@
         </section>
 
         <!-- Section 3: Reflection 2 -->
-        <section id="reflection2" class="panel min-h-screen w-full flex items-center py-20 px-6 md:px-12 lg:px-24">
+        <section id="reflection2" class="panel min-h-screen w-full py-20 px-6 md:px-12 lg:px-24">
             <div class="w-full max-w-7xl mx-auto flex flex-col h-full justify-center">
                 <div class="overflow-hidden mb-16 border-b border-gray-800 pb-8 flex flex-col lg:items-end">
                     <p class="font-display text-gray-500 uppercase tracking-widest mb-4 body-reveal opacity-0">Reflection 2</p>
@@ -157,7 +157,7 @@
                         </div>
                     </div>
 
-                    <div class="lg:col-span-4 flex flex-col gap-10 order-1 lg:order-2">
+                    <div class="lg:col-span-4 flex flex-col gap-10 order-1 lg:order-2 sticky top-32 h-fit pb-10">
                         <!-- Book Image -->
                         <div class="w-full max-w-[300px] aspect-[3/4] rounded-xl bg-accent flex flex-col items-center justify-center text-center p-6 border border-gray-800 image-reveal opacity-0 relative overflow-hidden group hover-float mx-auto lg:mx-0 lg:ml-auto">
                             <svg class="w-10 h-10 mb-4 opacity-30 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>

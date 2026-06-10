@@ -93,10 +93,30 @@ html.lenis {
     letter-spacing: 0.02em;
 }
 
-/* Preloader Background */
-.preloader {
-    background-color: var(--dark);
-    background-image: radial-gradient(circle at center, #111 0%, #050505 100%);
+/* Portal Preloader */
+#portal-preloader {
+    perspective: 1000px;
+}
+#sky-bg {
+    transition: transform 2.5s cubic-bezier(0.25, 1, 0.5, 1), filter 2.5s ease;
+}
+#sky-bg.warp {
+    transform: scale(3) rotate(15deg);
+    filter: saturate(2) contrast(1.5) blur(10px);
+}
+.portal-hole {
+    box-shadow: 0 0 50px rgba(0,0,0,0.8) inset, 0 0 30px rgba(255,255,255,0.05);
+    transition: transform 1.5s cubic-bezier(0.16, 1, 0.3, 1), opacity 1s ease, filter 1.5s ease;
+}
+
+/* Paragraph Animation (Hover Text) */
+#reflection1 p, #reflection2 p {
+    transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), color 0.4s ease;
+    will-change: transform;
+}
+#reflection1 p:hover, #reflection2 p:hover {
+    transform: translateX(10px) translateY(-2px);
+    color: #fff;
 }
 
 /* Selection */

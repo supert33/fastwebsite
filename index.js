@@ -37,40 +37,44 @@ document.querySelectorAll('nav a').forEach(anchor => {
     });
 });
 
-// Preloader Animation
+// Preloader Animation (Portal)
+const portalRing = document.getElementById('portal-ring');
+const skyBg = document.getElementById('sky-bg');
+const preloader = document.getElementById('portal-preloader');
+
 window.addEventListener("load", () => {
     // Disable scrolling during preloader
     lenis.stop();
 
-    const tl = gsap.timeline({
-        onComplete: () => {
-            lenis.start();
-        }
-    });
-
-    // Reveal preloader text
-    tl.to(".preloader-text", {
-        y: 0,
-        duration: 1.2,
-        stagger: 0.15,
-        ease: "power4.out"
-    })
-    // Hide preloader text
-    .to(".preloader-text", {
-        y: "-100%",
-        duration: 0.8,
-        stagger: 0.1,
-        ease: "power4.in",
-        delay: 0.6
-    })
-    // Slide preloader up
-    .to(".preloader", {
-        y: "-100%",
-        duration: 1.2,
-        ease: "power4.inOut"
-    }, "-=0.4")
-    // Trigger entrance animations for first section
-    .call(initEntranceAnimation, null, "-=0.6");
+    if(portalRing) {
+        portalRing.addEventListener('click', () => {
+            // Warp the sky
+            skyBg.classList.add('warp');
+            
+            // Scale up the portal massively
+            gsap.to(portalRing, {
+                scale: 50,
+                opacity: 0,
+                filter: 'blur(10px)',
+                duration: 1.5,
+                ease: "power2.inOut",
+                onComplete: () => {
+                    gsap.to(preloader, {
+                        opacity: 0,
+                        duration: 0.8,
+                        onComplete: () => {
+                            preloader.style.display = 'none';
+                            lenis.start();
+                            initEntranceAnimation();
+                        }
+                    });
+                }
+            });
+        });
+    } else {
+        lenis.start();
+        initEntranceAnimation();
+    }
 });
 
 // Entrance Animation for Section 1 (About Me)
